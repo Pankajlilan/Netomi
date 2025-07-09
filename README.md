@@ -1,9 +1,26 @@
 # Netomi
+![app_icon (1)](https://github.com/user-attachments/assets/83a45164-ebb3-413b-9fa6-8f280fe7fd2e)
+
 Netomi Chat App is an AI-powered messaging platform for smart, real-time conversations. Automate support, streamline communication, and engage users with intelligent, human-like responses — anytime, anywhere.
 =======
 # Mobile Chat Application
 
 A single-screen Android chat application with real-time communication and offline functionality.
+
+## Netomi Screenshots
+
+| Dashboard Chat Screen  |  Messages Screen   | Single/Multiple Chat Delete Screen |
+|--------------|-----------------|-----------------|
+|     <img width="430" alt="SS3" src="https://github.com/user-attachments/assets/5d37c73a-db38-4a23-8d0a-fb8f77a634f4" /> |  <img width="430" alt="SS3" src="https://github.com/user-attachments/assets/22d878f1-29bc-41dd-8242-a1721f1bdd8c" /> | <img width="430" alt="SS3" src="https://github.com/user-attachments/assets/9552eb9f-480f-4d2c-8e5b-cb98a19329b7" /> |
+
+| Offline Message Screen  |  Offline Chat Screen   | Empty Message Screen |
+|--------------|-----------------|-----------------|
+|     <img width="434" alt="SS4" src="https://github.com/user-attachments/assets/8713b458-290f-45eb-ae07-b587f119ef1b" /> |  <img width="435" alt="SS5" src="https://github.com/user-attachments/assets/d57c10ff-7485-4234-9628-a449ddc36a09" /> | <img width="434" alt="SS4" src="https://github.com/user-attachments/assets/6de789ff-e10a-4649-b92d-b8bc301343f8" /> |
+
+### 🎥 Demo
+Netomi Demo: https://drive.google.com/file/d/1NeyL4QLNxgrnUX-v8yEm8MgOTJRYIOUJ/view?usp=sharing
+
+Multiple Chat Deletion Demo: https://drive.google.com/file/d/1v9juA1b93D_CyHIs-3OW_gYZHwVQgy8A/view?usp=sharing
 
 ## Features
 
@@ -12,7 +29,6 @@ A single-screen Android chat application with real-time communication and offlin
 #### Chat Interface
 - **Single-screen design** with chat list and message view
 - **List of chatbot conversations** with preview of latest messages
-- **Chat clearing** - All conversations are cleared when the app is closed
 - **Modern UI** with Material Design components and CardViews
 
 #### Real-Time Syncing (P0)
@@ -76,7 +92,6 @@ app/src/main/java/com/pankaj/netomi/
 │   │   └── ChatRepository.kt
 │   └── work/
 │       └── MessageRetryWorker.kt
-├── domain/
 ├── presentation/
 │   ├── adapters/
 │   │   ├── ChatAdapter.kt
