@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Netomi
 Netomi Chat App is an AI-powered messaging platform for smart, real-time conversations. Automate support, streamline communication, and engage users with intelligent, human-like responses — anytime, anywhere.
 =======
@@ -224,4 +223,3 @@ For any issues or questions, please refer to the code documentation or create an
 ## License
 
 This project is developed as a demo application for showcasing real-time chat functionality with offline capabilities.
->>>>>>> e1415d7 (Add initial project setup with configuration files and data models)
