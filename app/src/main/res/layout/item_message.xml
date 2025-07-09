@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="message"
+            type="com.pankaj.netomi.data.models.ChatMessage" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp">
+
+        <!-- Sender Message (Right aligned) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/senderMessageCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="12dp"
+            android:visibility="@{message.isFromBot ? android.view.View.GONE : android.view.View.VISIBLE}"
+            app:cardBackgroundColor="@color/ig_blue"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/senderMessageText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{message.content}"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:lineSpacingExtra="2dp"
+                    android:fontFamily="sans-serif"
+                    tools:text="Hello, this is a sender message" />
+
+                <TextView
+                    android:id="@+id/senderTimestamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="4dp"
+                    app:formattedTimestamp="@{message.timestamp}"
+                    android:textColor="@color/sender_timestamp_text"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif"
+                    tools:text="12:30 PM" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Receiver Message (Left aligned) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/receiverMessageCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="80dp"
+            android:visibility="@{message.isFromBot ? android.view.View.VISIBLE : android.view.View.GONE}"
+            app:cardBackgroundColor="@color/ig_border"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/receiverMessageText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{message.content}"
+                    android:textColor="@color/ig_text_primary"
+                    android:textSize="15sp"
+                    android:lineSpacingExtra="2dp"
+                    android:fontFamily="sans-serif"
+                    tools:text="Hello, this is a receiver message" />
+
+                <TextView
+                    android:id="@+id/receiverTimestamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="4dp"
+                    app:formattedTimestamp="@{message.timestamp}"
+                    android:textColor="@color/ig_text_secondary"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif"
+                    tools:text="12:30 PM" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Message status indicators for sender messages -->
+        <LinearLayout
+            android:id="@+id/messageStatusContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="12dp"
+            android:orientation="horizontal"
+            android:visibility="@{message.isFromBot ? android.view.View.GONE : android.view.View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/senderMessageCard">
+
+            <!-- Sent indicator -->
+            <ImageView
+                android:id="@+id/sentIndicator"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginEnd="2dp"
+                android:src="@drawable/ic_check"
+                android:contentDescription="Message sent"
+                app:tint="@color/ig_text_secondary"
+                android:visibility="@{message.isSent ? android.view.View.VISIBLE : android.view.View.GONE}" />
+
+            <!-- Delivered indicator -->
+            <ImageView
+                android:id="@+id/deliveredIndicator"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/ic_check"
+                android:contentDescription="Message delivered"
+                app:tint="@color/ig_blue"
+                android:visibility="@{message.isDelivered ? android.view.View.VISIBLE : android.view.View.GONE}" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

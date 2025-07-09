@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/employeeSearchFragment">
+
+    <fragment
+        android:id="@+id/employeeSearchFragment"
+        android:name="com.pankaj.netomi.presentation.employee_search.EmployeeSearchFragment"
+        android:label="EmployeeSearchFragment"
+        tools:layout="@layout/fragment_employee_search">
+        <action
+            android:id="@+id/navigate_to_employeePostsFragment"
+            app:destination="@id/employeePostsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/employeePostsFragment"
+        android:name="com.pankaj.netomi.presentation.employee_details.EmployeePostsFragment"
+        android:label="EmployeeDetailsFragment">
+        <argument
+            android:name="employee_id"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="employee_name"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="employee_company"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+    </fragment>
+</navigation>

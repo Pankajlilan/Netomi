@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PieSocket Test</title>
+</head>
+<body>
+    <h1>PieSocket Connection Test</h1>
+    <div id="status">Disconnected</div>
+    <div id="messages"></div>
+    <input type="text" id="messageInput" placeholder="Enter message">
+    <button onclick="sendMessage()">Send Message</button>
+    <button onclick="connect()">Connect</button>
+    <button onclick="disconnect()">Disconnect</button>
+
+    <script>
+        let socket = null;
+        const statusDiv = document.getElementById('status');
+        const messagesDiv = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+
+        function connect() {
+            const url = 'wss://s14920.nyc1.piesocket.com/v3/1?api_key=AnR9h1nPCnkKRS0Ee1lPQEieRGdgEFY2MDGA9yRF&notify_self=1';
+
+            socket = new WebSocket(url);
+
+            socket.onopen = function(event) {
+                statusDiv.innerHTML = 'Connected';
+                statusDiv.style.color = 'green';
+                console.log('Connected to PieSocket');
+
+                // Send a test message immediately after connection
+                setTimeout(() => {
+                    sendTestMessage();
+                }, 1000);
+            };
+
+            socket.onmessage = function(event) {
+                console.log('Raw message received:', event.data);
+                const messageDiv = document.createElement('div');
+                messageDiv.innerHTML = `<strong>Received:</strong> ${event.data}`;
+                messagesDiv.appendChild(messageDiv);
+
+                // Try to parse as JSON
+                try {
+                    const parsed = JSON.parse(event.data);
+                    console.log('Parsed message:', parsed);
+                } catch (e) {
+                    console.log('Message is not JSON:', event.data);
+                }
+            };
+
+            socket.onclose = function(event) {
+                statusDiv.innerHTML = 'Disconnected';
+                statusDiv.style.color = 'red';
+                console.log('Disconnected from PieSocket');
+            };
+
+            socket.onerror = function(error) {
+                statusDiv.innerHTML = 'Error';
+                statusDiv.style.color = 'red';
+                console.error('WebSocket error:', error);
+            };
+        }
+
+        function sendMessage() {
+            const message = messageInput.value;
+            if (socket && socket.readyState === WebSocket.OPEN && message) {
+                // Send as JSON object
+                const data = {
+                    message: message,
+                    timestamp: Date.now(),
+                    type: 'chat_message',
+                    sender: 'web_test'
+                };
+
+                socket.send(JSON.stringify(data));
+                console.log('Sent:', data);
+
+                const messageDiv = document.createElement('div');
+                messageDiv.innerHTML = `<strong>Sent:</strong> ${message}`;
+                messageDiv.style.color = 'blue';
+                messagesDiv.appendChild(messageDiv);
+
+                messageInput.value = '';
+            }
+        }
+
+        function sendTestMessage() {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                const testData = {
+                    message: 'Test message from HTML client',
+                    timestamp: Date.now(),
+                    type: 'test_message',
+                    sender: 'html_client'
+                };
+
+                socket.send(JSON.stringify(testData));
+                console.log('Sent test message:', testData);
+            }
+        }
+
+        function disconnect() {
+            if (socket) {
+                socket.close();
+            }
+        }
+
+        // Handle Enter key in input
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

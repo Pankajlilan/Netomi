@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Launcher icon-inspired application theme -->
+    <style name="Theme.NetomiSearch" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color - Updated to match launcher icon -->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryVariant">@color/primary_dark_color</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary brand color - Green accent -->
+        <item name="colorSecondary">@color/accent_color</item>
+        <item name="colorSecondaryVariant">@color/primary_dark_color</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Background colors -->
+        <item name="android:colorBackground">@color/ig_background</item>
+        <item name="colorOnBackground">@color/ig_text_primary</item>
+        <item name="colorSurface">@color/ig_surface</item>
+        <item name="colorOnSurface">@color/ig_text_primary</item>
+
+        <!-- Status and Navigation bar styling -->
+        <item name="android:statusBarColor">@color/ig_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/ig_background</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+
+        <!-- Material3 colors -->
+        <item name="colorAccent">@color/primary_color</item>
+        <item name="colorError">@color/ig_gradient_middle</item>
+
+        <!-- Window styling -->
+        <item name="android:windowBackground">@color/ig_background</item>
+    </style>
+</resources>

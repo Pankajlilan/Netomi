@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.pankaj.netomi.presentation.viewmodel.ChatViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ig_background"
+        tools:context=".presentation.fragments.MessagesFragment">
+
+        <!-- Instagram-style Toolbar -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/ig_background"
+            android:elevation="0dp"
+            app:titleTextColor="@color/ig_text_primary"
+            app:navigationIconTint="@color/ig_text_primary"
+            app:titleTextAppearance="@style/InstagramToolbarTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Subtle border line under toolbar -->
+        <View
+            android:id="@+id/toolbarDivider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/ig_border"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <!-- Network Status Indicator -->
+        <TextView
+            android:id="@+id/networkStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ig_blue"
+            android:padding="8dp"
+            android:text="@string/no_internet_connection"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/toolbarDivider" />
+
+        <!-- Messages RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messageRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@id/networkStatus"
+            app:layout_constraintBottom_toTopOf="@id/messageInputContainer"
+            tools:listitem="@layout/item_message" />
+
+        <!-- Empty State -->
+        <LinearLayout
+            android:id="@+id/emptyStateContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/messageRecyclerView"
+            app:layout_constraintBottom_toBottomOf="@id/messageRecyclerView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_chat"
+                app:tint="@color/ig_text_secondary"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="No messages" />
+
+            <TextView
+                android:id="@+id/emptyStateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_messages_yet"
+                android:textSize="18sp"
+                android:textColor="@color/ig_text_primary"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start the conversation by sending a message"
+                android:textSize="14sp"
+                android:textColor="@color/ig_text_secondary"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+
+        <!-- Instagram-style Message Input Container -->
+        <LinearLayout
+            android:id="@+id/messageInputContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/ig_background"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <!-- Top border -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/ig_border" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:gravity="center_vertical">
+
+                <!-- Input field with Instagram-style border -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="12dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/ig_background"
+                    app:strokeColor="@color/ig_border"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/messageInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="message"
+                        android:hint="@string/type_a_message"
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:padding="12dp"
+                        android:background="@android:color/transparent"
+                        android:maxLines="4"
+                        android:textSize="15sp"
+                        android:textColor="@color/ig_text_primary"
+                        android:textColorHint="@color/ig_text_secondary"
+                        android:fontFamily="sans-serif" />
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Send Button -->
+                <TextView
+                    android:id="@+id/sendButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Send"
+                    android:textSize="14sp"
+                    android:textColor="@color/ig_blue"
+                    android:fontFamily="sans-serif-medium"
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:enabled="false" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

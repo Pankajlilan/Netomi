@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.pankaj.netomi.presentation.viewmodel.ChatViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ig_background"
+        tools:context=".presentation.fragments.ChatsFragment">
+
+        <!-- Instagram-style App Header -->
+        <LinearLayout
+            android:id="@+id/appHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/ig_background"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/appTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_title"
+                android:textAppearance="@style/AppTitleStyle"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/appSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_subtitle"
+                android:textAppearance="@style/AppSubtitleStyle"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+        <!-- Subtle border line under header -->
+        <View
+            android:id="@+id/headerDivider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/ig_border"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/appHeader" />
+
+        <!-- Network Status Indicator -->
+        <TextView
+            android:id="@+id/networkStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ig_blue"
+            android:padding="8dp"
+            android:text="@string/no_internet_connection"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/headerDivider" />
+
+        <!-- Chat List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/ig_background"
+            app:layout_constraintTop_toBottomOf="@id/networkStatus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:listitem="@layout/item_chat" />
+
+        <!-- Empty State -->
+        <TextView
+            android:id="@+id/emptyStateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/no_chats_available"
+            android:textSize="16sp"
+            android:textColor="@color/ig_text_secondary"
+            android:fontFamily="sans-serif"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/chatRecyclerView"
+            app:layout_constraintBottom_toBottomOf="@id/chatRecyclerView" />
+
+        <!-- Instagram-style FAB -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabNewChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/new_chat"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/ig_blue"
+            app:tint="@color/white"
+            app:elevation="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Delete FAB for selection mode -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/delete_chats"
+            android:src="@drawable/ic_delete"
+            app:backgroundTint="@color/red_500"
+            app:tint="@color/white"
+            app:elevation="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pie.host WebSocket Test</title>
+</head>
+<body>
+    <h1>Pie.host WebSocket Test</h1>
+    <div id="status">Disconnected</div>
+    <div>
+        <input type="text" id="messageInput" placeholder="Enter message">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <div id="messages"></div>
+
+    <script>
+        const ws = new WebSocket('wss://s14920.nyc1.piesocket.com/v3/1?api_key=AnR9h1nPCnkKRS0Ee1lPQEieRGdgEFY2MDGA9yRF&notify_self=1');
+
+        ws.onopen = function(event) {
+            console.log('WebSocket connected');
+            document.getElementById('status').innerText = 'Connected';
+            addMessage('System: Connected to pie.host');
+        };
+
+        ws.onmessage = function(event) {
+            console.log('Raw message received:', event.data);
+            addMessage('Received: ' + event.data);
+
+            try {
+                const parsed = JSON.parse(event.data);
+                console.log('Parsed JSON:', parsed);
+                addMessage('Parsed: ' + JSON.stringify(parsed, null, 2));
+            } catch (e) {
+                console.log('Not JSON format');
+            }
+        };
+
+        ws.onerror = function(error) {
+            console.error('WebSocket error:', error);
+            addMessage('Error: ' + error);
+        };
+
+        ws.onclose = function(event) {
+            console.log('WebSocket closed:', event.code, event.reason);
+            document.getElementById('status').innerText = 'Disconnected';
+            addMessage('System: Disconnected');
+        };
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value;
+            if (message) {
+                console.log('Sending:', message);
+                ws.send(message);
+                addMessage('Sent: ' + message);
+                input.value = '';
+            }
+        }
+
+        function addMessage(message) {
+            const div = document.createElement('div');
+            div.innerHTML = '<pre>' + message + '</pre>';
+            document.getElementById('messages').appendChild(div);
+        }
+    </script>
+</body>
+</html>

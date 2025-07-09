@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Netomi Chat</string>
+    <string name="app_title">Netomi</string>
+    <string name="app_subtitle">Connect • Share • Chat</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_user_id">Enter User Id</string>
+    <string name="number_one">1</string>
+    <string name="search">Search</string>
+    <string name="enter_user_id_here">Enter User Id here...</string>
+    <string name="user_id_not_found">User Id Not Found</string>
+    <string name="user_idnot_empty">User Id cannot be empty</string>
+    <string name="nothing_found">Nothing Found</string>
+
+    <!-- Chat App Strings -->
+    <string name="time_format">%1$tl:%1$tM %1$tp</string>
+    <string name="chat_title">Chat</string>
+    <string name="send">Send</string>
+    <string name="type_message">Type a message...</string>
+    <string name="no_chats_available">No chats available. Create a new chat to start!</string>
+    <string name="no_messages_yet">No messages yet. Start a conversation!</string>
+    <string name="select_chat_to_start">Select a chat to start messaging</string>
+    <string name="chat_messages">Chat Messages</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="message_queued">Message queued for retry when connection is restored</string>
+    <string name="new_chat">New Chat</string>
+    <string name="type_a_message">Type a message...</string>
+    <string name="chats">Chats</string>
+    <string name="delete_chats">Delete Chats</string>
+    <string name="select_all">Select All</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_chat_confirmation">Delete this chat?</string>
+    <string name="delete_chats_confirmation">Delete %d chats?</string>
+    <string name="chat_deleted">Chat deleted</string>
+    <string name="chats_deleted">%d chats deleted</string>
+</resources>
