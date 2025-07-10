@@ -1,13 +1,12 @@
 # Netomi
 ![app_icon (1)](https://github.com/user-attachments/assets/83a45164-ebb3-413b-9fa6-8f280fe7fd2e)
 
-Netomi Chat App is an AI-powered messaging platform for smart, real-time conversations. Automate support, streamline communication, and engage users with intelligent, human-like responses — anytime, anywhere.
+Netomi Chat App is an AI-powered messaging platform with real-time communication and offline functionality.
 =======
-# Mobile Chat Application
 
-A single-screen Android chat application with real-time communication and offline functionality.
 
-## Netomi Screenshots
+
+## Screenshots
 
 | Dashboard Chat Screen  |  Messages Screen   | Single/Multiple Chat Delete Screen |
 |--------------|-----------------|-----------------|
